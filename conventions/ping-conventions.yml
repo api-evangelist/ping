@@ -1,0 +1,68 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pingxx.com/api/
+docs:
+  authentication: https://docs.pingxx.com/api/%E8%AE%A4%E8%AF%81.html
+  errors: https://docs.pingxx.com/api/%E9%94%99%E8%AF%AF.html
+  pagination: https://docs.pingxx.com/api/%E5%88%86%E9%A1%B5.html
+  metadata: https://docs.pingxx.com/api/%E5%85%83%E6%95%B0%E6%8D%AE.html
+  webhooks: https://docs.pingxx.com/api/Webhooks%20%E5%9B%9E%E8%B0%83%E6%A6%82%E8%BF%B0.html
+api_style:
+  protocol: REST
+  base_url: https://api.pingxx.com/v1
+  versioning: uri-path (v1)
+  media_type: application/json
+  transport: HTTPS required (plain HTTP rejected)
+  request_encoding: form-encoded request body (application/x-www-form-urlencoded), JSON responses
+authentication:
+  style: http-basic
+  detail: API Key as Basic-auth username, empty password. See authentication/ping-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    Ping++ does not document a general Idempotency-Key header. Duplicate-charge protection is
+    achieved through merchant order-number uniqueness: reusing an order_no returns the error code
+    charge_order_no_used ("订单号已使用，请用新的订单号发起交易"). For batch payouts/refunds Ping++
+    instructs merchants to retry with the SAME merchant order number so only one transfer/red-envelope
+    is sent (red_system_busy / transfer_system_busy). This is a business-key dedup, not a general
+    idempotency contract, so no Idempotency pointer is emitted.
+pagination:
+  style: cursor
+  request_params:
+    - {name: limit, type: int, range: 1-100, default: 10}
+    - {name: starting_after, type: string, description: object id to start the page after (next page)}
+    - {name: ending_before, type: string, description: object id to end the page before (previous page)}
+    - {name: created, type: object, description: "Unix-timestamp range filter with gt/gte/lt/lte sub-keys, e.g. created[gte]"}
+  response_fields:
+    - {name: object, value: "list"}
+    - {name: url, description: URL used to fetch the list}
+    - {name: has_more, type: boolean, description: whether more elements exist after this page}
+    - {name: data, type: array, description: array of returned objects}
+metadata:
+  supported: true
+  param: "metadata[<key>]"
+  limits: {max_pairs: 20, max_total_length_unicode_chars: 1000}
+  reserved_test_keys:
+    - {key: pingpp_tc, mode: test-only, values: {"001": "simulate duplicate webhook delivery after a successful charge", "002": "delay the async webhook notification by 5 minutes"}}
+    - {key: phone_number, description: "11-digit phone number"}
+    - {key: user_id, description: "merchant-app unique user id"}
+request_tracing:
+  request_id: >-
+    Webhook Event objects carry a `request` field equal to the API Request ID that triggered the
+    event (null when the event was not triggered by an API request).
+error_envelope:
+  fields:
+    - {name: type, values: [invalid_request_error, api_error, channel_error, card_error]}
+    - {name: message, description: human-readable error description}
+    - {name: code, optional: true, description: channel-returned error code}
+    - {name: param, optional: true, description: offending parameter name on parameter errors}
+  reference: errors/ping-error-codes.yml
+rate_limiting:
+  signal: >-
+    HTTP 403 Forbidden is returned when calls exceed the concurrency limit of the merchant's Ping++
+    plan (超过 Ping++ 套餐的并发限制); the remedy is to upgrade the plan or throttle. Ping++ does not
+    publish numeric per-endpoint rate-limit headers.
+webhooks:
+  reference: asyncapi/ping-webhooks.yml
+  delivery: POST JSON Event object; respond 2xx to acknowledge, else 500 triggers retry
+  retry: up to 10 attempts over ~25h at 5s,10s,2min,5min,10min,30min,1h,2h,6h,15h

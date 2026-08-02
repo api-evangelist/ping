@@ -1,0 +1,111 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.pingxx.com/docs/downloads.html
+notes: >-
+  Ping++ publishes official server and client SDKs under the GitHub organization
+  PingPlusPlus (https://github.com/PingPlusPlus). Package-registry presence verified
+  for the languages below; the remaining SDKs are distributed from GitHub / vendor
+  plugin registries and are listed with their canonical source repo.
+packages:
+# ---- Server SDKs (official, github.com/PingPlusPlus) ----
+- language: php
+  registry: packagist
+  name: pingplusplus/pingpp-php
+  url: https://packagist.org/packages/pingplusplus/pingpp-php
+  source: https://github.com/PingPlusPlus/pingpp-php
+  install: composer require pingplusplus/pingpp-php
+  official: true
+- language: javascript
+  registry: npm
+  name: pingpp
+  url: https://www.npmjs.com/package/pingpp
+  source: https://github.com/PingPlusPlus/pingpp-nodejs
+  install: npm install pingpp
+  official: true
+- language: python
+  registry: pypi
+  name: pingpp
+  url: https://pypi.org/project/pingpp/
+  source: https://github.com/PingPlusPlus/pingpp-python
+  install: pip install pingpp
+  official: true
+- language: ruby
+  registry: rubygems
+  name: pingpp
+  url: https://rubygems.org/gems/pingpp
+  source: https://github.com/PingPlusPlus/pingpp-ruby
+  install: gem install pingpp
+  official: true
+- language: go
+  registry: pkg.go.dev
+  name: github.com/pingplusplus/pingpp-go
+  url: https://pkg.go.dev/github.com/pingplusplus/pingpp-go
+  source: https://github.com/PingPlusPlus/pingpp-go
+  install: go get github.com/pingplusplus/pingpp-go
+  official: true
+- language: csharp
+  registry: nuget
+  name: Pingpp
+  url: https://www.nuget.org/packages/Pingpp/
+  source: https://github.com/PingPlusPlus/pingpp-csharp
+  install: dotnet add package Pingpp
+  official: true
+- language: java
+  registry: github
+  name: pingpp-java
+  url: https://github.com/PingPlusPlus/pingpp-java
+  source: https://github.com/PingPlusPlus/pingpp-java
+  official: true
+# ---- Client SDKs (official) ----
+- language: swift
+  registry: github
+  name: pingpp-ios
+  url: https://github.com/PingPlusPlus/pingpp-ios
+  source: https://github.com/PingPlusPlus/pingpp-ios
+  platform: iOS
+  official: true
+- language: java
+  registry: github
+  name: pingpp-android
+  url: https://github.com/PingPlusPlus/pingpp-android
+  source: https://github.com/PingPlusPlus/pingpp-android
+  platform: Android
+  official: true
+- language: javascript
+  registry: github
+  name: pingpp-js
+  url: https://github.com/PingPlusPlus/pingpp-js
+  source: https://github.com/PingPlusPlus/pingpp-js
+  platform: HTML5 / Web
+  official: true
+- language: arkts
+  registry: ohpm
+  name: "@pingplusplus/pingppsdk"
+  url: https://ohpm.openharmony.cn/#/cn/detail/@pingplusplus%2Fpingppsdk
+  platform: HarmonyOS NEXT (鸿蒙)
+  official: true
+# ---- Cross-platform / hybrid SDKs (official) ----
+- language: javascript
+  registry: vendor
+  name: APICloud pingpp module
+  url: http://www.apicloud.com/mod_detail/pingpp
+  platform: APICloud
+  official: true
+- language: javascript
+  registry: vendor
+  name: AppCan pingpp plugin
+  url: http://plugin.appcan.cn/details.html#392_index
+  platform: AppCan
+  official: true
+- language: javascript
+  registry: coding
+  name: pingpp-cordova
+  url: https://pingplusplus.coding.net/public/pingpp-cordova/pingpp-cordova/git/files
+  platform: Cordova
+  official: true
+- language: javascript
+  registry: coding
+  name: pingpp-react-native
+  url: https://pingplusplus.coding.net/public/pingpp-react-native/pingpp-react-native/git/files
+  platform: React Native
+  official: true

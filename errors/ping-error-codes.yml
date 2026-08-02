@@ -1,0 +1,64 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pingxx.com/api/%E9%94%99%E8%AF%AF.html
+format: custom-json-error-object
+envelope:
+  location: response body `error` object
+  fields:
+    - {name: type, description: error type (see error_types)}
+    - {name: message, description: human-readable error description}
+    - {name: code, optional: true, description: channel-level error code (see channel_codes)}
+    - {name: param, optional: true, description: offending parameter name}
+http_status_codes:
+  - {status: 200, name: OK, meaning: "一切正常 / request succeeded"}
+  - {status: 400, name: Bad Request, meaning: "missing parameter or malformed parameter format"}
+  - {status: 401, name: Unauthorized, meaning: "no valid API Key provided"}
+  - {status: 402, name: Request Failed, meaning: "parameters valid but the request failed (business error)"}
+  - {status: 403, name: Forbidden, meaning: "exceeded the concurrency limit of the Ping++ plan; upgrade plan or throttle"}
+  - {status: 404, name: Not Found, meaning: "requested resource does not exist"}
+  - {status: 500, name: Server Error, meaning: "Ping++ server error"}
+  - {status: 502, name: Server Error, meaning: "Ping++ server error"}
+  - {status: 503, name: Server Error, meaning: "Ping++ server error"}
+  - {status: 504, name: Server Error, meaning: "Ping++ server error"}
+error_types:
+  - {type: invalid_request_error, meaning: "request error — wrong endpoint, parameter or value"}
+  - {type: api_error, meaning: "internal Ping++ server exception"}
+  - {type: channel_error, meaning: "error surfaced by the third-party payment channel; usually needs handling or contacting Ping++"}
+  - {type: card_error, meaning: "card-level error"}
+# Channel / business error codes (error.code) — these behave like decline / channel-failure codes.
+channel_codes:
+  - {code: charge_closed, meaning: "支付订单已结束，不能进行后续操作 / charge already closed, no further operation allowed"}
+  - {code: charge_unexpected_status, meaning: "支付返回意外的状态码 / charge returned an unexpected status"}
+  - {code: charge_order_no_used, meaning: "订单号已使用，请用新的订单号发起交易 / order_no already used — use a new order_no"}
+  - {code: refund_wait_operation, meaning: "退款需要等待用户进一步操作 / refund is waiting on further user action"}
+  - {code: refund_refused, meaning: "退款失败，被支付渠道拒绝 / refund refused by the payment channel"}
+  - {code: refund_refused_msg, meaning: "退款已被支付渠道拒绝 / refund refused by the channel (message)"}
+  - {code: refund_retry, meaning: "退款失败，需要重新发起退款 / refund failed, retry the refund"}
+  - {code: refund_manual_intervention, meaning: "退款失败，需要线下或转账退款 / refund failed, handle offline or by transfer"}
+  - {code: refund_unexpected_status, meaning: "退款返回意外的状态码 / refund returned an unexpected status"}
+  - {code: refund_pending, meaning: "退款状态未明，请稍后查询 / refund status pending, query later"}
+  - {code: refund_failed, meaning: "退款失败 / refund failed"}
+  - {code: refund_info_from_channel, meaning: "来自渠道的退款信息 / refund info from channel"}
+  - {code: refund_not_found, meaning: "未在渠道查找到相应退款信息 / refund not found at the channel"}
+  - {code: channel_connection_error, meaning: "支付渠道通讯异常 / channel connection error"}
+  - {code: channel_request_error, meaning: "请求支付渠道接口失败 / channel request failed"}
+  - {code: channel_parse_error, meaning: "支付渠道返回数据格式异常导致解析错误 / channel response parse error"}
+  - {code: channel_sign_error, meaning: "支付渠道返回数据未通过签名验证 / channel signature verification failed"}
+  - {code: channel_unexpected_error, meaning: "支付渠道遇到未知错误 / unknown channel error"}
+  - {code: channel_parameter_error, meaning: "支付渠道参数错误 / channel parameter error"}
+  - {code: channel_auth_error, meaning: "支付渠道参数错误 / channel auth/parameter error"}
+  - {code: channel_response_code_fail, meaning: "支付渠道响应码错误 / channel response code failure"}
+  - {code: channel_parameters_consistency_error, meaning: "支付渠道参数一致性检测失败 / channel parameter consistency check failed"}
+  - {code: channel_not_support_red_envelope, meaning: "微信参数版本不支持发送红包 / WeChat params version does not support red envelopes"}
+  - {code: channel_not_support_transfer, meaning: "微信参数版本不支持发送企业付款 / WeChat params version does not support transfers"}
+  - {code: channel_request_info, meaning: "来自渠道的信息 / info from channel"}
+  - {code: channel_notify_id_error, meaning: "支付渠道 NOTIFY ID 非法或已失效 / channel notify id invalid or expired"}
+  - {code: query_right_error, meaning: "支付渠道查询权限错误 / channel query permission error (Alipay: sign 账务明细 & 交易查询 interfaces)"}
+  - {code: transfer_wait_operation, meaning: "转账需要打开地址进行下一步付款操作 / transfer awaiting next-step operation"}
+  - {code: red_system_busy, meaning: "支付渠道系统繁忙，请用同一商户单号再次调用（只会发送一个红包）/ channel busy, retry with the same order_no (only one red envelope sent)"}
+  - {code: transfer_system_busy, meaning: "支付渠道系统繁忙，请用同一商户单号再次调用（只会发送一笔转账）/ channel busy, retry with the same order_no (only one transfer sent)"}
+notes: >-
+  Ping++ errors are not RFC 9457 problem+json; they use a custom `error` object. The channel_codes
+  list doubles as the payment-decline / channel-failure reference for this acquirer, keyed on the
+  optional error.code field (populated from the underlying WeChat Pay / Alipay / UnionPay / Yeepay /
+  Fuiou channel).

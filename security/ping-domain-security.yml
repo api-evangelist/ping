@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.pingxx.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Dec 28 23:59:59 2026 GMT
+  hsts: false
+- host: docs.pingxx.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Dec 28 23:59:59 2026 GMT
+  hsts: false
+- host: api.pingxx.com
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Dec 28 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: pingxx.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

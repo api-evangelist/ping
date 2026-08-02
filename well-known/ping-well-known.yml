@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+note: >-
+  Probed the standard /.well-known/ discovery surface on the Ping++ web, docs and API hosts.
+  api.pingxx.com returns 401 for all paths (auth-gated root). www.pingxx.com returns HTTP 200 for
+  arbitrary /.well-known/* paths but serves the SPA HTML fallback (soft-404), so none of these are
+  real discovery documents. No WellKnown/SecurityTxt artifact was saved and no pointer is wired.
+hosts:
+  - host: https://api.pingxx.com
+    documents:
+      - {path: /.well-known/security.txt, status: 401}
+      - {path: /.well-known/openid-configuration, status: 401}
+      - {path: /.well-known/oauth-authorization-server, status: 401}
+  - host: https://www.pingxx.com
+    documents:
+      - {path: /.well-known/security.txt, status: 200, result: html-spa-fallback, real: false}
+      - {path: /.well-known/openid-configuration, status: 200, result: html-spa-fallback, real: false}
+      - {path: /.well-known/api-catalog, status: 200, result: html-spa-fallback, real: false}
+  - host: https://docs.pingxx.com
+    documents:
+      - {path: /llms.txt, status: 200, result: html-spa-fallback, real: false}

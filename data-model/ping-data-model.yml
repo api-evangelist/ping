@@ -1,0 +1,53 @@
+generated: '2026-07-20'
+method: derived
+source: https://docs.pingxx.com/api/
+note: >-
+  Entity graph derived from the Ping++ API reference object catalog (no OpenAPI is published, so
+  relationships are inferred from documented object fields and the reference navigation, not from
+  $ref links). Amounts are in the smallest currency unit (分 / cents).
+entities:
+  - {name: app, id_prefix: app_, description: "Merchant application; scoping unit for all objects and channel params"}
+  - {name: charge, id_prefix: ch_, description: "A payment. Core basic-transaction object", belongs_to: [app, order]}
+  - {name: refund, id_prefix: re_, description: "A refund against a charge", belongs_to: [charge]}
+  - {name: batch_refund, description: "Batch of refunds", belongs_to: [app]}
+  - {name: transfer, id_prefix: tr_, description: "Enterprise payout / transfer to a recipient", belongs_to: [app]}
+  - {name: batch_transfer, description: "Batch of transfers", belongs_to: [app]}
+  - {name: red_envelope, description: "WeChat red envelope payout", belongs_to: [app]}
+  - {name: order, id_prefix: oid_, description: "Order in the member/multi-merchant account system", belongs_to: [app, user]}
+  - {name: order_refund, description: "Refund against an order", belongs_to: [order]}
+  - {name: user, id_prefix: user_, description: "Member-account user; can have a parent_user (hierarchy)", belongs_to: [app]}
+  - {name: settle_account, description: "User settlement account", belongs_to: [user]}
+  - {name: recharge, description: "Balance top-up", belongs_to: [user]}
+  - {name: recharge_refund, description: "Refund of a recharge", belongs_to: [recharge]}
+  - {name: withdrawal, description: "Balance withdrawal / cash-out", belongs_to: [user]}
+  - {name: batch_withdrawal, description: "Batch of withdrawals", belongs_to: [app]}
+  - {name: balance_bonus, description: "Balance gift/bonus", belongs_to: [user]}
+  - {name: balance_transfer, description: "Balance transfer between users", belongs_to: [user]}
+  - {name: balance_settlement, description: "Balance settlement", belongs_to: [user]}
+  - {name: balance_transaction, description: "Balance ledger entry", belongs_to: [user]}
+  - {name: coupon_template, description: "Coupon template", belongs_to: [app]}
+  - {name: coupon, description: "Issued coupon", belongs_to: [coupon_template, user]}
+  - {name: sub_app, description: "Sub-merchant application (multi-tier merchant system)", belongs_to: [app]}
+  - {name: channel, description: "Sub-merchant channel parameters", belongs_to: [sub_app]}
+  - {name: royalty, description: "Profit-share allocation", belongs_to: [app]}
+  - {name: royalty_template, description: "Profit-share template", belongs_to: [app]}
+  - {name: royalty_settlement, description: "Profit-share settlement", belongs_to: [app]}
+  - {name: royalty_transaction, description: "Profit-share settlement ledger entry", belongs_to: [royalty_settlement]}
+  - {name: event, id_prefix: evt_, description: "Webhook event wrapping an object change", belongs_to: [app]}
+relationships:
+  - {from: order, to: charge, kind: has_many, via: charges}
+  - {from: charge, to: order, kind: belongs_to, via: order_no}
+  - {from: charge, to: app, kind: belongs_to, via: app}
+  - {from: refund, to: charge, kind: belongs_to, via: charge}
+  - {from: charge, to: refund, kind: has_many, via: refunds}
+  - {from: order, to: order_refund, kind: has_many, via: refunds}
+  - {from: user, to: order, kind: has_many, via: user}
+  - {from: user, to: settle_account, kind: has_many, via: user}
+  - {from: user, to: user, kind: belongs_to, via: parent_user}
+  - {from: recharge, to: recharge_refund, kind: has_many, via: recharge}
+  - {from: coupon, to: coupon_template, kind: belongs_to, via: coupon_template}
+  - {from: coupon, to: user, kind: belongs_to, via: user}
+  - {from: sub_app, to: channel, kind: has_many, via: channels}
+  - {from: sub_app, to: app, kind: belongs_to, via: app}
+  - {from: royalty_settlement, to: royalty_transaction, kind: has_many, via: transactions}
+  - {from: event, to: app, kind: belongs_to, via: app_id}

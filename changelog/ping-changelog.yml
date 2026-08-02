@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pingxx.com/api/API%20%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.html
+scheme: dated (YYYY-MM-DD), no semantic version tags
+current_base_path: /v1
+notes: >-
+  Ping++ maintains a dated API changelog. Entries are incremental channel/parameter additions and
+  documentation clarifications; the API stays on the stable /v1 base path (no breaking major bumps).
+  Recent window captured below verbatim from the changelog page.
+entries:
+  - {date: '2026-05-12', highlights: "新增 富友支付 extra 参数 (added Fuiou Pay extra params)", breaking: false}
+  - {date: '2026-04-28', highlights: "撤销接口新增易宝和富友支付渠道 (void/reverse API adds Yeepay and Fuiou channels)", breaking: false}
+  - {date: '2026-01-20', highlights: "退款 refund 新增返回 app 属性 (refund object now returns app attribute)", breaking: false}
+  - {date: '2025-12-25', highlights: "支付宝转账新增 转账场景名称/信息 参数 (Alipay transfer adds scene name/info params)", breaking: false}
+  - {date: '2025-11-07', highlights: "新增易宝云闪付微信小程序支付 (added Yeepay UnionPay WeChat mini-program pay)", breaking: false}
+  - {date: '2025-10-30', highlights: "修复支付渠道 extra 参数说明渠道名称 (fixed channel name in extra param docs)", breaking: false}
+  - {date: '2025-07-09', highlights: "更新元数据 metadata 键值对限制为 20 (metadata key-value limit updated to 20)", breaking: false}
+  - {date: '2025-04-29', highlights: "upacp/upacp_wap/upacp_pc 新增 risk_info 风控信息域; 新增易宝银行转账支付; 撤销 charge 移除 alipay 支持", breaking: false}
+  - {date: '2025-04-07', highlights: "更新创建 transfer 微信商家转账参数; 新增撤销 transfer 接口 (new void-transfer API)", breaking: false}
+  - {date: '2025-03-13', highlights: "支付渠道 extra 返回支付请求渠道商户号说明", breaking: false}
+  - {date: '2025-03-11', highlights: "新增易宝个人网银/企业网银支付文档 (Yeepay personal/enterprise net-banking pay)", breaking: false}
+  - {date: '2025-02-27', highlights: "下线京东代付 (JD payout channel retired)", breaking: false}
+  - {date: '2022-11-29', highlights: "新增 Webhooks 事件 charge.failed / refund.failed; 新增易宝支付 extra 参数与渠道属性值", breaking: false}

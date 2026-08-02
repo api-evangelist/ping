@@ -1,0 +1,148 @@
+aid: ping
+name: Ping++
+description: >-
+  Ping++ (品牌运营方为上海简米网络科技有限公司 / Shanghai Jianmi Network Technology Co., Ltd.) is a
+  Chinese aggregated-payment ("聚合支付") platform that gives merchants a single REST API and
+  multi-platform SDKs to accept payments across WeChat Pay, Alipay, UnionPay, bank cards and
+  other channels, plus compliant profit-sharing / split-settlement (分账), enterprise payouts
+  (企业付款 / Transfers), red envelopes, member account systems and multi-tier merchant systems.
+  The Stripe-inspired API is REST, JSON, HTTP Basic authenticated with an API Key, and organised
+  around Charge, Refund, Transfer, Order, User, Recharge, Withdrawal, Coupon and Royalty objects,
+  with cursor pagination, metadata, webhooks and a dated changelog. This profile was seeded as a
+  venture-portfolio lead (General Catalyst, Ribbit Capital) and enriched from Ping++'s public
+  developer surface.
+url: https://raw.githubusercontent.com/api-evangelist/ping/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.pingxx.com/assets/img/logo-black.svg
+x-type: company
+x-source: vc-portfolio
+x-backed-by:
+- general-catalyst
+- ribbit-capital
+x-tier: stub
+x-tier-reason: portfolio-lead
+specificationVersion: '0.20'
+created: '2026-07-17'
+modified: '2026-07-20'
+tags:
+- Company
+- Payments
+- Aggregated Payment
+- 聚合支付
+- FinTech
+- Payment Gateway
+- Split Settlement
+- WeChat Pay
+- Alipay
+- UnionPay
+- China
+- Payouts
+apis:
+- name: Ping++ Payments API
+  description: >-
+    Ping++ REST payments API — create and query Charges, Refunds, Transfers (enterprise payouts),
+    Red Envelopes, Orders, Users, Recharges, Withdrawals, Coupons and Royalties across WeChat Pay,
+    Alipay, UnionPay and bank-card channels. HTTP Basic auth with an API Key, JSON responses,
+    cursor pagination, metadata and webhooks.
+  humanURL: https://docs.pingxx.com/api/
+  baseURL: https://api.pingxx.com/v1
+  tags:
+  - Payments
+  - REST
+  - Charges
+  - Refunds
+  - Transfers
+  - Webhooks
+  properties:
+  - type: Authentication
+    url: authentication/ping-authentication.yml
+  - type: Conventions
+    url: conventions/ping-conventions.yml
+  - type: ErrorCatalog
+    url: errors/ping-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/ping-webhooks.yml
+  - type: DataModel
+    url: data-model/ping-data-model.yml
+  - type: Sandbox
+    url: sandbox/ping-sandbox.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+- FN: APIs.json
+  email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
+common:
+- type: Website
+  url: https://www.pingxx.com
+- type: DeveloperPortal
+  url: https://docs.pingxx.com/docs/index.html
+- type: Documentation
+  url: https://www.pingxx.com/docs/overview/
+- type: APIReference
+  url: https://docs.pingxx.com/api/
+- type: GettingStarted
+  url: https://www.pingxx.com/docs/overview/
+- type: Support
+  url: https://help.pingxx.com/
+- type: Blog
+  url: https://www.pingxx.com/news.html
+- type: GitHubOrganization
+  url: https://github.com/PingPlusPlus
+- type: Pricing
+  url: https://www.pingxx.com/pricing.html
+- type: SignUp
+  url: https://passport.pingxx.com/register
+- type: Login
+  url: https://dashboard.pingxx.com/login
+- type: TermsOfService
+  url: https://www.pingxx.com/terms.html
+- type: PrivacyPolicy
+  url: https://www.pingxx.com/privacy.html
+- type: StatusPage
+  url: https://status.pingxx.com
+- type: Authentication
+  url: authentication/ping-authentication.yml
+- type: Conventions
+  url: conventions/ping-conventions.yml
+- type: ErrorCatalog
+  url: errors/ping-error-codes.yml
+- type: DeclineCodes
+  url: errors/ping-error-codes.yml
+- type: Webhooks
+  url: asyncapi/ping-webhooks.yml
+- type: Lifecycle
+  url: lifecycle/ping-lifecycle.yml
+- type: ChangeLog
+  url: changelog/ping-changelog.yml
+- type: Packages
+  url: packages/ping-packages.yml
+- type: SDKs
+  url: packages/ping-packages.yml
+- type: MCPServer
+  url: mcp/ping-mcp.yml
+- type: LLMsTxt
+  url: llms/ping-llms.txt
+- type: DataModel
+  url: data-model/ping-data-model.yml
+- type: Sandbox
+  url: sandbox/ping-sandbox.yml
+- type: DomainSecurity
+  url: security/ping-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml

@@ -1,0 +1,26 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pingxx.com/api/
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.pingxx.com/v1
+  docs: https://docs.pingxx.com/api/
+  note: >-
+    Single stable /v1 base path. API evolution is additive and tracked by a dated changelog
+    (changelog/ping-changelog.yml) rather than versioned major releases.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is published.
+    Channel/parameter removals are announced in the dated changelog (e.g. 2025-02-27 京东代付 下线,
+    2025-04-29 撤销 charge 移除 alipay 支持). No Deprecation pointer emitted (no published policy).
+status_page: https://status.pingxx.com
+sla:
+  url: null
+  note: SLA / uptime target not publicly published; concurrency limits are plan-tiered.
+support:
+  help_center: https://help.pingxx.com/
+  hotline: "021-5047 7566"
+changelog: changelog/ping-changelog.yml

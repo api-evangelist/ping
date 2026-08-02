@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pingxx.com/api/%E8%AE%A4%E8%AF%81.html
+note: >-
+  Ping++ provides a real test mode via test-prefixed API Keys. Test mode simulates transactions and
+  webhooks without any real money movement or fees, and can be switched with live mode in real time.
+  Values below are captured from the docs; only Ping++'s own published example key placeholder is
+  echoed (no real credentials are invented).
+test_vs_live:
+  mechanism: API Key prefix
+  live_prefix: sk_live_
+  test_prefix: sk_test_
+  switching: "live and test keys can be switched in real time (实时切换)"
+  behavior: "test-mode keys simulate transactions/webhooks; no real transactions or fees are produced"
+  transport: HTTPS required in both modes
+example_request: 'curl https://api.pingxx.com/v1/charges -u REDACTED_STRIPE_KEY:'
+webhook_simulation:
+  param: metadata[pingpp_tc]
+  scope: test mode only (does not affect live)
+  values:
+    "001": "simulate duplicate webhook delivery after a successful charge"
+    "002": "delay the async webhook notification by 5 minutes"
+  purpose: exercise a server's handling of delayed / duplicated async webhook notifications
+notes: >-
+  Ping++ does not publish fixed 'magic' test card numbers the way card acquirers do; test payments
+  run through channel test environments driven by the sk_test_ key. There is no separate sandbox
+  base host — the same https://api.pingxx.com/v1 endpoint switches behavior by key mode.

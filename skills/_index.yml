@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: generated
+source: https://docs.pingxx.com/api/
+grounding: >-
+  Ping++ publishes no OpenAPI document; these skills are grounded in the documented REST operations
+  (HTTP method + path) from the official API reference at https://docs.pingxx.com/api/, plus the
+  captured conventions/, errors/ and asyncapi/ artifacts. No operationIds or endpoints are invented.
+skills:
+  - file: ping-accept-a-payment.md
+    name: Accept a payment (create and confirm a Charge)
+    api: https://api.pingxx.com/v1
+    operations:
+      - "POST /v1/charges"
+      - "GET /v1/charges/{id}"
+      - "webhook charge.succeeded"
+  - file: ping-refund-a-charge.md
+    name: Refund a charge and reconcile
+    api: https://api.pingxx.com/v1
+    operations:
+      - "POST /v1/charges/{id}/refunds"
+      - "GET /v1/charges/{id}/refunds/{refund_id}"
+      - "webhook refund.succeeded"
+  - file: ping-enterprise-payout.md
+    name: Send an enterprise payout (Transfer)
+    api: https://api.pingxx.com/v1
+    operations:
+      - "POST /v1/transfers"
+      - "GET /v1/transfers/{id}"
+      - "webhook transfer.succeeded"

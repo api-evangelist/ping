@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://docs.pingxx.com/api/
+note: >-
+  No official Ping++ hosted/remote MCP server was found (checked docs, GitHub org PingPlusPlus,
+  and MCP registries). This is a DERIVED candidate tool list mapped from the documented Ping++ REST
+  operations, provided as a starting point for a community MCP server. Not published by Ping++.
+server:
+  name: ping
+  transport: http
+  url: null
+  base_api: https://api.pingxx.com/v1
+  auth: HTTP Basic (API Key as username)
+tools:
+  - {name: create_charge, description: "Create a Charge object (accept a payment)", method: POST, path: "/v1/charges"}
+  - {name: get_charge, description: "Retrieve a Charge object", method: GET, path: "/v1/charges/{id}"}
+  - {name: list_charges, description: "List Charge objects", method: GET, path: "/v1/charges"}
+  - {name: reverse_charge, description: "Reverse/void a Charge object", method: POST, path: "/v1/charges/{id}/reverse"}
+  - {name: create_refund, description: "Create a Refund for a charge", method: POST, path: "/v1/charges/{id}/refunds"}
+  - {name: get_refund, description: "Retrieve a Refund object", method: GET, path: "/v1/charges/{id}/refunds/{refund_id}"}
+  - {name: list_refunds, description: "List Refunds for a charge", method: GET, path: "/v1/charges/{id}/refunds"}
+  - {name: create_batch_refund, description: "Create a Batch Refund object", method: POST, path: "/v1/batch_refunds"}
+  - {name: create_transfer, description: "Create a Transfer (enterprise payout)", method: POST, path: "/v1/transfers"}
+  - {name: get_transfer, description: "Retrieve a Transfer object", method: GET, path: "/v1/transfers/{id}"}
+  - {name: list_transfers, description: "List Transfer objects", method: GET, path: "/v1/transfers"}
+  - {name: create_batch_transfer, description: "Create a Batch Transfer object", method: POST, path: "/v1/batch_transfers"}
+  - {name: create_red_envelope, description: "Create a Red Envelope object", method: POST, path: "/v1/red_envelopes"}
+  - {name: create_order, description: "Create an Order object", method: POST, path: "/v1/orders"}
+  - {name: pay_order, description: "Pay an Order object", method: POST, path: "/v1/orders/{id}/pay"}
+  - {name: get_order, description: "Retrieve an Order object", method: GET, path: "/v1/orders/{id}"}
+  - {name: create_user, description: "Create a User (member account)", method: POST, path: "/v1/users"}
+  - {name: get_user, description: "Retrieve a User object", method: GET, path: "/v1/users/{id}"}
+  - {name: create_recharge, description: "Create a Recharge (top up balance)", method: POST, path: "/v1/recharges"}
+  - {name: create_withdrawal, description: "Create a Withdrawal", method: POST, path: "/v1/withdrawals"}
+  - {name: create_coupon, description: "Create a Coupon", method: POST, path: "/v1/coupons"}
+  - {name: get_event, description: "Retrieve a webhook Event object", method: GET, path: "/v1/events/{id}"}

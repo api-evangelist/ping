@@ -1,0 +1,41 @@
+# Ping++
+
+> Ping++ (operated by Shanghai Jianmi Network Technology Co., Ltd. / 上海简米网络科技有限公司) is a Chinese aggregated-payment (聚合支付) platform. A single Stripe-style REST API and multi-platform SDKs let merchants accept payments across WeChat Pay, Alipay, UnionPay and bank cards, run compliant profit-sharing / split-settlement (分账), enterprise payouts, red envelopes, member-account systems and multi-tier merchant systems. Venture-backed by General Catalyst and Ribbit Capital.
+
+Key facts:
+- API base URL: https://api.pingxx.com/v1 (REST, JSON responses, HTTPS required)
+- Authentication: HTTP Basic Auth — API Key as username, empty password. Keys are prefixed sk_live_ (production) and sk_test_ (test mode).
+- Pagination: cursor-based via limit (1-100), starting_after, ending_before; list responses carry object=list, url, has_more, data[].
+- Errors: custom JSON error object with type (invalid_request_error, api_error, channel_error, card_error), message, optional code and param.
+- Webhooks: outbound POST JSON Event objects; ack with 2xx; retried up to 10 times over ~25h.
+
+## API Reference
+- Ping++ API Reference (API 文档): https://docs.pingxx.com/api/
+- Authentication (认证): https://docs.pingxx.com/api/%E8%AE%A4%E8%AF%81.html
+- Errors (错误): https://docs.pingxx.com/api/%E9%94%99%E8%AF%AF.html
+- Pagination (分页): https://docs.pingxx.com/api/%E5%88%86%E9%A1%B5.html
+- Metadata (元数据): https://docs.pingxx.com/api/%E5%85%83%E6%95%B0%E6%8D%AE.html
+- Webhooks (Webhooks 回调): https://docs.pingxx.com/api/Webhooks%20%E5%9B%9E%E8%B0%83%E6%A6%82%E8%BF%B0.html
+- API Changelog (API 更新日志): https://docs.pingxx.com/api/API%20%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97.html
+
+## Docs
+- Developer Center (开发者中心): https://docs.pingxx.com/docs/index.html
+- Developer Guide (开发指南): https://www.pingxx.com/docs/overview/
+- SDK Downloads (SDK 下载): https://www.pingxx.com/docs/downloads.html
+- Help Center (帮助中心): https://help.pingxx.com/
+- System Status: https://status.pingxx.com
+
+## SDKs
+- Server: PHP, Java, Node.js, Go, Python, Ruby, C# — https://github.com/PingPlusPlus
+- Client: iOS, Android, HTML5/JS, HarmonyOS NEXT — https://github.com/PingPlusPlus
+- npm pingpp, PyPI pingpp, RubyGems pingpp, Packagist pingplusplus/pingpp-php, NuGet Pingpp
+
+## Company
+- Website: https://www.pingxx.com
+- About (关于简米): https://www.pingxx.com/about.html
+- News (资讯动态): https://www.pingxx.com/news.html
+- Pricing / Service (服务与支持): https://www.pingxx.com/pricing.html
+- Sign up: https://passport.pingxx.com/register
+- Dashboard login: https://dashboard.pingxx.com/login
+- Terms: https://www.pingxx.com/terms.html
+- Privacy: https://www.pingxx.com/privacy.html
