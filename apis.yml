@@ -39,6 +39,18 @@ tags:
 - Company
 - Payments
 - Aggregated Payment
+- Fintech
+- Payment Gateway
+- Split Settlement
+- WeChat Pay
+- Alipay
+- UnionPay
+- China
+- Payouts
+tags_raw:
+- Company
+- Payments
+- Aggregated Payment
 - 聚合支付
 - FinTech
 - Payment Gateway
@@ -58,6 +70,13 @@ apis:
   humanURL: https://docs.pingxx.com/api/
   baseURL: https://api.pingxx.com/v1
   tags:
+  - Payments
+  - REST
+  - Charges
+  - Refunds
+  - Transfers
+  - Webhook
+  tags_raw:
   - Payments
   - REST
   - Charges
